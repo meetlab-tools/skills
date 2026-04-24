@@ -129,6 +129,37 @@ This creates a new Next.js project with:
 - shadcn/ui pre-configured with CSS variables, `cn` util, and Tailwind
 - TypeScript, App Router, and all standard Next.js defaults
 
+### Validate the scaffolded project
+
+After scaffolding, run these checks before moving on:
+
+**1. Verify Next.js version is at least 16.2.4**
+
+The npm cache often serves stale versions. Check and upgrade if needed:
+```bash
+cd /home/fabian/Projects/MyNewApp
+node -e "const v = require('./package.json').dependencies.next.replace('^',''); const [a,b,c] = v.split('.').map(Number); if (a < 16 || (a === 16 && b < 2) || (a === 16 && b === 2 && c < 4)) { console.log('OUTDATED: ' + v + ' — upgrading...'); process.exit(1) } else { console.log('OK: next@' + v) }"
+```
+
+If the version is outdated, upgrade:
+```bash
+npm install next@latest
+```
+
+**2. Verify CLAUDE.md and AGENTS.md exist**
+
+The latest `create-next-app` (used internally by shadcn) should generate both files.
+Confirm they are present:
+```bash
+ls -la /home/fabian/Projects/MyNewApp/CLAUDE.md /home/fabian/Projects/MyNewApp/AGENTS.md
+```
+
+If either file is missing, the installed Next.js version was too old. Upgrade Next.js
+(see above) and check again. If they still don't exist after upgrading, create them
+manually — see Step 6 for what to put in AGENTS.md.
+
+**Do not skip these checks.** Proceed to Step 6 only after both pass.
+
 ### Install all components after scaffolding
 
 Immediately after creating the project, install **all** available shadcn components:
@@ -160,12 +191,13 @@ the base component library, theming, and utility setup are configured from the s
 
 ## Step 6 — Update the Existing AGENTS.md
 
-`create-next-app` automatically generates a `CLAUDE.md` and an `AGENTS.md` inside
-the project. These already include Next.js-specific docs and pointers to the installed
-module documentation. **Do not recreate or overwrite them.**
+The scaffolded project should already have a `CLAUDE.md` and an `AGENTS.md` —
+you validated this in Step 5. These files include Next.js-specific docs and pointers
+to the installed module documentation. **Do not recreate or overwrite them.**
 
-Instead, open the existing `AGENTS.md` and **append** the following sections to it,
-tailored to what was chosen for this project:
+If AGENTS.md exists, open it and **append** the following sections, tailored to what
+was chosen for this project. If it does not exist (older Next.js version edge case),
+create it with these sections:
 
 ```markdown
 ## Stack Choices for This Project
