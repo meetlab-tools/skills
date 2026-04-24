@@ -275,7 +275,45 @@ After scaffolding and generating AGENTS.md, coordinate with these skills:
 
 ---
 
-## Step 8 — Confirm Stack to User
+## Step 8 — Commit and Push to GitHub
+
+Once the project is fully scaffolded (AGENTS.md updated, all components installed,
+validations passed), commit everything and push to a GitHub repository.
+
+```bash
+cd ~/Desktop/dev/MyNewApp
+git add -A
+git commit -m "Initial project scaffold
+
+Next.js + shadcn/ui (base) with all components installed."
+```
+
+Then check if a remote repository already exists and push:
+```bash
+# Check if a remote is already configured
+git remote get-url origin 2>/dev/null
+```
+
+If no remote exists, create a new GitHub repo using the `gh` CLI and push:
+```bash
+gh repo create MyNewApp --private --source=. --push
+```
+
+If a remote already exists, just push:
+```bash
+git push -u origin main
+```
+
+**Notes:**
+- Always create the repo as **private** by default. The user can make it public later.
+- The repo name should match the project folder name.
+- If `gh` is not authenticated, tell the user to run `gh auth login` first.
+- Do not skip this step — every new project should be version-controlled and backed
+  up to GitHub from the start.
+
+---
+
+## Step 9 — Confirm Stack to User
 
 When proposing or scaffolding, always tell the user in plain language:
 
