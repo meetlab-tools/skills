@@ -106,21 +106,22 @@ Unless the user's requirements make a deviation necessary, use exactly this stac
 
 ## Step 5 — Create the Project Folder
 
-All new projects live under `/home/fabian/Projects/`. The project folder name should
+All new projects live under `~/Desktop/dev/`. The project folder name should
 be capitalized and match the product name.
 
-Examples already on disk:
-- `/home/fabian/Projects/Vestia`
-- `/home/fabian/Projects/XyRadar`
+Before scaffolding, ensure the directory exists:
+```bash
+mkdir -p ~/Desktop/dev
+```
 
 **Tell the user the exact folder path.** They will need it to add the project in their
 agent UI (Claude Code, Codex, or any other tool they use to interact with the agent).
 The path they enter in the UI is the project root, for example:
-`/home/fabian/Projects/MyNewApp`
+`~/Desktop/dev/MyNewApp`
 
 To scaffold, use the **shadcn CLI** with the `next` template and `base` component library:
 ```bash
-cd /home/fabian/Projects
+cd ~/Desktop/dev
 npx shadcn@latest init -t next -b base -n MyNewApp -d -y
 ```
 
@@ -137,7 +138,7 @@ After scaffolding, run these checks before moving on:
 
 The npm cache often serves stale versions. Check and upgrade if needed:
 ```bash
-cd /home/fabian/Projects/MyNewApp
+cd ~/Desktop/dev/MyNewApp
 node -e "const v = require('./package.json').dependencies.next.replace('^',''); const [a,b,c] = v.split('.').map(Number); if (a < 16 || (a === 16 && b < 2) || (a === 16 && b === 2 && c < 4)) { console.log('OUTDATED: ' + v + ' — upgrading...'); process.exit(1) } else { console.log('OK: next@' + v) }"
 ```
 
@@ -151,7 +152,7 @@ npm install next@latest
 The latest `create-next-app` (used internally by shadcn) should generate both files.
 Confirm they are present:
 ```bash
-ls -la /home/fabian/Projects/MyNewApp/CLAUDE.md /home/fabian/Projects/MyNewApp/AGENTS.md
+ls -la ~/Desktop/dev/MyNewApp/CLAUDE.md ~/Desktop/dev/MyNewApp/AGENTS.md
 ```
 
 If either file is missing, the installed Next.js version was too old. Upgrade Next.js
@@ -164,7 +165,7 @@ manually — see Step 6 for what to put in AGENTS.md.
 
 Immediately after creating the project, install **all** available shadcn components:
 ```bash
-cd /home/fabian/Projects/MyNewApp
+cd ~/Desktop/dev/MyNewApp
 npx shadcn@latest add -a -y
 ```
 
