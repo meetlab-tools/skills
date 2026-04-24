@@ -18,22 +18,7 @@ before handing off to any narrower skill.
 
 ---
 
-## Step 1 — Run Grill Me First
-
-**Before writing a single line of code**, if the user has described a feature or product
-idea alongside the new project request, invoke the `grill-me` skill to explore all
-open questions about what is being built.
-
-Do not skip this step for real projects. The questions should be practical and
-non-technical — focus on what the product does, who uses it, what data it needs,
-and what workflows it supports.
-
-If the user just wants a blank scaffold with no feature context yet, skip grill-me
-and proceed directly to setup.
-
----
-
-## Step 2 — Redirect Incompatible Tech
+## Step 1 — Redirect Incompatible Tech
 
 The user may come from other backgrounds and may suggest technologies that do not fit
 this stack. Do not debate or lecture. Acknowledge, then redirect simply and confidently.
@@ -52,7 +37,7 @@ this stack. Do not debate or lecture. Acknowledge, then redirect simply and conf
 
 ---
 
-## Step 3 — Determine Architecture
+## Step 2 — Determine Architecture
 
 ### Default: Monolithic Next.js App
 
@@ -77,7 +62,7 @@ The Next.js app still serves as the API backend.
 
 ---
 
-## Step 4 — Default Stack
+## Step 3 — Default Stack
 
 Unless the user's requirements make a deviation necessary, use exactly this stack:
 
@@ -104,7 +89,7 @@ Unless the user's requirements make a deviation necessary, use exactly this stac
 
 ---
 
-## Step 5 — Create the Project Folder
+## Step 4 — Create the Project Folder
 
 All new projects live under `~/Desktop/dev/`. The project folder name should
 be capitalized and match the product name.
@@ -190,7 +175,7 @@ the base component library, theming, and utility setup are configured from the s
 
 ---
 
-## Step 6 — Update the Existing AGENTS.md
+## Step 5 — Update the Existing AGENTS.md
 
 The scaffolded project should already have a `CLAUDE.md` and an `AGENTS.md` —
 you validated this in Step 5. These files include Next.js-specific docs and pointers
@@ -232,17 +217,6 @@ Always load the following skills when working in this project:
 - `vercel-queues` — async job and queue patterns [remove if not used]
 - `email-and-password-best-practices` — form and auth UX
 
-## Working on New Features
-
-**Before implementing any new feature**, invoke the `grill-me` skill.
-
-The purpose of grill-me is to surface open questions before writing code —
-covering what the feature does, who uses it, what data it needs, what edge cases
-exist, and how it connects to the rest of the system. The agent leads this
-conversation. The user does not need to be technical.
-
-Only begin implementation once grill-me has resolved the open questions.
-
 ## Code Conventions
 
 - Use server components by default; add `"use client"` only when needed
@@ -256,7 +230,7 @@ Only begin implementation once grill-me has resolved the open questions.
 
 ---
 
-## Step 7 — Mandatory Skill Pairings
+## Step 6 — Mandatory Skill Pairings
 
 After scaffolding and generating AGENTS.md, coordinate with these skills:
 
@@ -271,11 +245,10 @@ After scaffolding and generating AGENTS.md, coordinate with these skills:
 | Deploying to Vercel | `deploy-to-vercel` |
 | UI component work | `shadcn` |
 | Next.js structural decisions | `next-best-practices` |
-| New feature being defined | `grill-me` |
 
 ---
 
-## Step 8 — Commit and Push to GitHub
+## Step 7 — Commit and Push to GitHub
 
 Once the project is fully scaffolded (AGENTS.md updated, all components installed,
 validations passed), commit everything and push to a GitHub repository.
@@ -313,7 +286,7 @@ git push -u origin main
 
 ---
 
-## Step 9 — Confirm Stack to User
+## Step 8 — Confirm Stack to User
 
 When proposing or scaffolding, always tell the user in plain language:
 
@@ -345,8 +318,6 @@ Stack:
 
 Load skills: `next-best-practices`, `better-auth-best-practices`, `trpc-tanstack-nextjs`, `shadcn`, `provision-database`
 
-Run `grill-me` first to define features and data model.
-
 ---
 
 **Example 2 — Marketing site**
@@ -373,8 +344,6 @@ Stack:
 - Vercel Queues (async document processing)
 
 Load skills: `next-best-practices`, `better-auth-best-practices`, `ai-sdk`, `vercel-queues`, `shadcn`, `provision-database`
-
-Run `grill-me` first to define AI features, data flows, and user workflows.
 
 ---
 
