@@ -77,32 +77,26 @@ Unless the user's requirements make a deviation necessary, use exactly this stac
 | Database | **Neon Postgres** (provisioned via Vercel) |
 | API Layer | **tRPC** (when multiple typed client/server operations are needed) |
 | AI Features | **Vercel AI SDK** (`ai` package) — mandatory for anything AI-related |
-| Async Jobs | **Vercel Queues** (`@vercel/queue`) — for background tasks, fan-out, retries |
-| Workflows | **Vercel Workflow** — for multi-step stateful business logic |
+| Workflows & Async Jobs | **Vercel Workflow** — for multi-step stateful business logic adn async jobs |
 | Email | **SendGrid** — for all transactional and notification emails |
 | Mobile | **Expo** — if a native app is needed alongside the web app |
 
 **Do not add Drizzle** if the project has no database yet.
 **Do not add tRPC** if server actions are sufficient.
-**Do not add Vercel Queues** if all work is synchronous.
+**Do not add Vercel Workflows** if all work is synchronous.
 **Do not add AI SDK** unless the project has an AI feature.
 
 ---
 
 ## Step 4 — Create the Project Folder
 
-All new projects live under `~/Desktop/dev/`. The project folder name should
+All new projects live under the folder the user decided. this decision should be stored as the CLAUDE.md of the global instalation of claude and put as a one line project creation that points to this skill as well. The project folder name should
 be capitalized and match the product name.
 
-Before scaffolding, ensure the directory exists:
-```bash
-mkdir -p ~/Desktop/dev
-```
+Before scaffolding, ensure the directory exists. 
 
 **Tell the user the exact folder path.** They will need it to add the project in their
 agent UI (Claude Code, Codex, or any other tool they use to interact with the agent).
-The path they enter in the UI is the project root, for example:
-`~/Desktop/dev/MyNewApp`
 
 To scaffold, use the **shadcn CLI** with the `next` template and `base` component library:
 ```bash
@@ -150,7 +144,6 @@ manually — see Step 6 for what to put in AGENTS.md.
 
 Immediately after creating the project, install **all** available shadcn components:
 ```bash
-cd ~/Desktop/dev/MyNewApp
 npx shadcn@latest add -a -y
 ```
 
@@ -193,7 +186,7 @@ create it with these sections:
 - Drizzle ORM — database via Neon Postgres on Vercel [remove if not used]
 - tRPC — typed API layer [remove if not used]
 - Vercel AI SDK (`ai` package) — all AI features [remove if not used]
-- Vercel Queues (`@vercel/queue`) — background jobs and async processing [remove if not used]
+- Vercel Workflow (`@vercel/worflow`) — background jobs and async processing [remove if not used]
 - SendGrid — transactional email [remove if not used]
 
 ## Infrastructure
@@ -205,17 +198,6 @@ external server infrastructure. Use Vercel-native primitives for everything.
 
 This is a monolithic Next.js application. Do not split into microservices,
 separate API servers, or multiple repos. One codebase, one deployment.
-
-## Skills to Load
-
-Always load the following skills when working in this project:
-
-- `better-auth-best-practices` — auth configuration and session management [remove if not used]
-- `shadcn` — UI component patterns
-- `trpc-tanstack-nextjs` — tRPC with TanStack Query in App Router [remove if not used]
-- `ai-sdk` — Vercel AI SDK patterns [remove if not used]
-- `vercel-queues` — async job and queue patterns [remove if not used]
-- `email-and-password-best-practices` — form and auth UX
 
 ## Code Conventions
 
@@ -230,25 +212,7 @@ Always load the following skills when working in this project:
 
 ---
 
-## Step 6 — Mandatory Skill Pairings
-
-After scaffolding and generating AGENTS.md, coordinate with these skills:
-
-| When | Load skill |
-|---|---|
-| Auth is included | `better-auth-best-practices` |
-| tRPC is included | `trpc-tanstack-nextjs` |
-| Any AI feature is included | `ai-sdk` |
-| Background jobs or async processing needed | `vercel-queues` |
-| Multi-step stateful workflows | `vercel-queues` (it covers Workflow DevKit) |
-| Database provisioning needed | `provision-database` |
-| Deploying to Vercel | `deploy-to-vercel` |
-| UI component work | `shadcn` |
-| Next.js structural decisions | `next-best-practices` |
-
----
-
-## Step 7 — Commit and Push to GitHub
+## Step 6 — Commit and Push to GitHub
 
 Once the project is fully scaffolded (AGENTS.md updated, all components installed,
 validations passed), commit everything and push to a GitHub repository.
@@ -286,7 +250,7 @@ git push -u origin main
 
 ---
 
-## Step 8 — Confirm Stack to User
+## Step 7 — Confirm Stack to User
 
 When proposing or scaffolding, always tell the user in plain language:
 
@@ -295,7 +259,7 @@ When proposing or scaffolding, always tell the user in plain language:
 - Whether a database is included and why
 - Whether tRPC is included and why
 - Whether AI SDK is included and why
-- Whether Vercel Queues is included and why
+- Whether Vercel worflow is included and why
 - Any deviation from defaults and the reason
 
 Keep the explanation simple. The user may not be technical. Avoid jargon.
@@ -341,19 +305,8 @@ Stack:
 - Better Auth (user accounts)
 - Drizzle + Neon Postgres (document storage)
 - Vercel AI SDK (summarization, embeddings, RAG)
-- Vercel Queues (async document processing)
+- Vercel WOrkflows (async document processing)
 
 Load skills: `next-best-practices`, `better-auth-best-practices`, `ai-sdk`, `vercel-queues`, `shadcn`, `provision-database`
 
 ---
-
-**Example 4 — Mobile app**
-User: `We need a mobile app for our customers.`
-
-Stack:
-- Expo (React Native) — mobile app
-- Existing or new Next.js app — API backend
-
-Note to user: "We use Expo for mobile. It uses React Native under the hood and
-is the standard way to build mobile apps today. The mobile app talks to a
-Next.js backend on Vercel — same infrastructure, no separate API server."
