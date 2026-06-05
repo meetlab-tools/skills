@@ -250,7 +250,11 @@ git push -u origin main
 
 ---
 
-## Step 7 — Confirm Stack to User
+
+## Step 7 — Deploy to vercel
+Using the vercel CLI (install it and ask the user to login with the url you generate), generate the project connected to their github account. first you must make sure the user installed the github app in their vercel account and connected their account with vercel so each new project is already recognized by vercel automaticaly with their github. after that, if the project was created automatically push to main to generate the first deployment and provide the user with the production deployed url to preview the newly created project.
+
+## Step 8 — Confirm Stack to User
 
 When proposing or scaffolding, always tell the user in plain language:
 
