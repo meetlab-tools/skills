@@ -252,7 +252,7 @@ git push -u origin main
 
 
 ## Step 7 — Deploy to vercel
-Using the vercel CLI (install it and ask the user to login with the url you generate), generate the project connected to their github account. first you must make sure the user installed the github app in their vercel account and connected their account with vercel so each new project is already recognized by vercel automaticaly with their github. after that, if the project was created automatically push to main to generate the first deployment and provide the user with the production deployed url to preview the newly created project.
+Using the vercel CLI (install it and ask the user to login with the url you generate), generate the project connected to their github account. first you must make sure the user installed the github app in their vercel account and connected their account with vercel so each new project is already recognized by vercel automaticaly with their github. after that, if the project was created automatically push to main to generate the first deployment and provide the user with the production deployed url to preview the newly created project. A common problem related to deployemnts is that the github cli locally isn't configured with the correct github email and not with the local machine email. make sure that is configured correctly
 
 ## Step 8 — Confirm Stack to User
 
